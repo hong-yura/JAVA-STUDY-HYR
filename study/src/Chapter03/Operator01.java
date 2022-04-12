@@ -1,8 +1,9 @@
-package operator;
+package Chapter03;
 
-// 3-1
+// Chapter03 연산자 연습문제 풀이
 public class Operator01 {
-
+	
+	/* [3-1] 다음 연산의 결과를 적으시오. */
 	public static void main(String[] args) {
 		int x = 2;
 		int y = 5;
