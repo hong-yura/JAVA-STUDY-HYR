@@ -224,38 +224,153 @@ public class Ch04_Exercise {
 	}
 
 	
-	/* [4-11] 피보나치(Fibonnaci) 수열은 앞의 두 수를 더해서 다음 수를 만들어 나가는 수열이다.
-	 * 예를 들어 앞의 두 수가 1과 1이라면 그 다음 수는 2가 되고 그 다음 수는 1과 2를 더해서 3이 되어서
-	 * 1,1,2,3,5,8,13,21,...과 같은 식으로 진행된다.
-	 * 1과 1부터 시작하는 피보나치 수열의 10번째 수는 무엇인지 계산하는 프로그램을 완성하시오.
-	 */
+	private static void ex11() {
+		/* [4-11] 피보나치(Fibonnaci) 수열은 앞의 두 수를 더해서 다음 수를 만들어 나가는 수열이다.
+		 * 예를 들어 앞의 두 수가 1과 1이라면 그 다음 수는 2가 되고 그 다음 수는 1과 2를 더해서 3이 되어서
+		 * 1,1,2,3,5,8,13,21,...과 같은 식으로 진행된다.
+		 * 1과 1부터 시작하는 피보나치 수열의 10번째 수는 무엇인지 계산하는 프로그램을 완성하시오.
+		 */
+		int num1 = 1;
+		int num2 = 1;
+		int num3 = 0;
+		System.out.print(num1 + "," + num2);
+		
+		// F(n) = F(n-1) + F(n-2)
+		for(int i = 0; i < 8; i++) {
+			num3 = num1 + num2;
+			num1 = num2;
+			num2 = num3;
+			System.out.print("," + num3);
+		}
+		
+		/* 출력 결과
+		 * 1,1,2,3,5,8,13,21,34,55
+		 */
+	}
 	
 	
+	private static void ex12() {
+		/* [4-12] 구구단의 일부분을 다음과 같이 출력하시오. */	
+//		for(int i = 2; i <= 9; i++) {
+//			for(int j = 1; j <= 3; j++) {
+//				System.out.print(i + "*" + j + "=" + i * j + "\t");
+//				System.out.println();
+//			}
+//			System.out.println();
+//		}
+		
+		
+		for (int i = 1 ; i <= 9 ; i++) {
+			for (int j = 1; j <= 3; j++) {
+				int x = j + 1 + (i - 1) / 3 * 3;
+				int y = i % 3 == 0 ? 3 : i % 3 ;
+				
+				if(x > 9) // 9단까지만 출력한다. 이 코드가 없으면 10단까지 출력된다.
+					break;
+				
+				System.out.print(x + "*" + y + "=" + x * y + "\t"); //println이 아님에 주의
+			}
+			System.out.println();
+			
+			if(i % 3 == 0) {
+				System.out.println();
+			}
+		}
+		
+	}
 	
-	/* [4-12] 구구단의 일부분을 다음과 같이 출력하시오. */
-
+	
+	private static void ex13() {
+		/* [4-13] 다음은 주어진 문자열(value)이 숫자인지를 판별하는 프로그램이다. 
+		 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
+		 */
+		
+		String value = "12o34";
+		char ch = ' ';
+		boolean isNumber = true;
+		
+		// 반복문과 charAt(int i)를 이용해서 문자열의 문자를
+		// 하나씩 읽어서 검사한다.
+		for(int i = 0; i < value.length(); i++) {
+			ch = value.charAt(i);
+			if(ch >= '0' && ch <='9') {
+				isNumber = true;
+			} else {
+				isNumber = false;
+				break;
+			}
+		}
+		
+		if(isNumber) {
+			System.out.println(value + "는 숫자입니다.");
+		} else {
+			System.out.println(value + "는 숫자가 아닙니다.");
+		}
+		
+		/* 출력 결과
+		 * 12o34는 숫자가 아닙니다.
+		 */
+	}
 	
 	
-	/* [4-13] 다음은 주어진 문자열(value)이 숫자인지를 판별하는 프로그램이다. 
-	 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
-	 */
+	private static void ex14() {
+		/* [4-14] 다음은 숫자맞추기 게임을 작성한 것이다.
+		 * 1과 100사이의 값을 반복적으로 입력해서 컴퓨터가 생각한 값을 맞추면 게임이 끝난다.
+		 * 사용자가 값을 입력하면, 컴퓨터는 자신이 생각한 값과 비교해서 결과를 알려준다.
+		 * 사용자가 컴퓨터가 생각한 숫자를 맞추면 게임이 끝나고 몇 번 만에 숫자를 맞췄는지 알려준다.
+		 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
+		 */	
+		// 1 ~ 100 사이의 임의의 값을 얻어서 answer에 저장한다.
+		int answer = (int)(Math.random() * 100) + 1;
+		int input = 0;		// 사용자입력을 저장할 공간
+		int count = 0;		// 시도횟수를 세기위한 변수
+		
+		// 화면으로 부터 사용자입력을 받기 위해서 Scanner 클래스 사용
+		java.util.Scanner s = new java.util.Scanner(System.in);
+		
+		do {
+			count++;
+			System.out.print("1과 100사이의 값을 입력하세요 : "); 
+			input = s.nextInt(); 	// 입력받은 값을 변수 input에 저장한다.
+			
+			if(input > answer) {
+				System.out.println("더 작은 수를 입력하세요.");
+			} else if(input < answer) {
+				System.out.println("더 큰 수를 입력하세요.");
+			} else {
+				System.out.println("맞췄습니다.");
+				System.out.println("시도횟수는" + count + "번 입니다.");
+			}
+			
+		} while(true); // 무한반복문
+	}
 	
 	
-	
-	/* [4-14] 다음은 숫자맞추기 게임을 작성한 것이다.
-	 * 1과 100사이의 값을 반복적으로 입력해서 컴퓨터가 생각한 값을 맞추면 게임이 끝난다.
-	 * 사용자가 값을 입력하면, 컴퓨터는 자신이 생각한 값과 비교해서 결과를 알려준다.
-	 * 사용자가 컴퓨터가 생각한 숫자를 맞추면 게임이 끝나고 몇 번 만에 숫자를 맞췄는지 알려준다.
-	 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
-	 */	
-	 
-	
-	
-	/* [4-15] 다음은 회문수를 구하는 프로그램이다. 회문수(palindrome)란 숫자를 거꾸로 읽어도 앞으로 읽는 것과 같은 수를 말한다.
-	 * 예를 들면 ‘12321’이나 ‘13531’같은 수를 말한다.
-	 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
-	 */
-	
+	private static void ex15() {
+		/* [4-15] 다음은 회문수를 구하는 프로그램이다. 회문수(palindrome)란 숫자를 거꾸로 읽어도 앞으로 읽는 것과 같은 수를 말한다.
+		 * 예를 들면 ‘12321’이나 ‘13531’같은 수를 말한다.
+		 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
+		 */
+		int number = 12321;
+		int tmp = number;
+		
+		int result = 0; 	// 변수 number를 거꾸로 변환해서 담을 변수
+		
+		while(tmp != 0) {
+			result = result * 10 + tmp % 10;
+			tmp /= 10;
+		}
+		
+		if(number == result) {
+			System.out.println(number + "는 회수문 입니다.");
+		} else {
+			System.out.println(number + "는 회수문이 아닙니다.");			
+		}
+		
+		/* 출력 결과
+		 * 12321는 회수문 입니다.
+		 */
+	}
 	
 	
 	public static void main(String[] args) {
@@ -271,11 +386,11 @@ public class Ch04_Exercise {
 		// exercise.ex08();
 		// exercise.ex09();
 		// exercise.ex10();
+		// exercise.ex11();
 		// exercise.ex12();
 		// exercise.ex13();
 		// exercise.ex14();
 		// exercise.ex15();
-		
 	}
 
 }
