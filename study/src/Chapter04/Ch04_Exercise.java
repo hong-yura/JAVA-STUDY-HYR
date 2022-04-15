@@ -1,4 +1,4 @@
-package Chapte04;
+package Chapter04;
 
 // Chapter04 조건문과 반복문 연습문제 풀이
 public class Ch04_Exercise {
@@ -206,7 +206,6 @@ public class Ch04_Exercise {
 	}
 
 	
-	
 	private static void ex10() {
 		/* [4-10] int타입의 변수 num이 있을 때, 
 		 * 각 자리의 합을 더한 결과를 출력하는 코드를 완성하라.
@@ -231,11 +230,16 @@ public class Ch04_Exercise {
 	 * 1과 1부터 시작하는 피보나치 수열의 10번째 수는 무엇인지 계산하는 프로그램을 완성하시오.
 	 */
 	
+	
+	
 	/* [4-12] 구구단의 일부분을 다음과 같이 출력하시오. */
 
+	
+	
 	/* [4-13] 다음은 주어진 문자열(value)이 숫자인지를 판별하는 프로그램이다. 
 	 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
 	 */
+	
 	
 	
 	/* [4-14] 다음은 숫자맞추기 게임을 작성한 것이다.
@@ -246,11 +250,14 @@ public class Ch04_Exercise {
 	 */	
 	 
 	
+	
 	/* [4-15] 다음은 회문수를 구하는 프로그램이다. 회문수(palindrome)란 숫자를 거꾸로 읽어도 앞으로 읽는 것과 같은 수를 말한다.
 	 * 예를 들면 ‘12321’이나 ‘13531’같은 수를 말한다.
 	 * 알맞은 코드를 넣어서 프로그램을 완성하시오.
 	 */
-		
+	
+	
+	
 	public static void main(String[] args) {
 		Ch04_Exercise exercise = new Ch04_Exercise();
 		
