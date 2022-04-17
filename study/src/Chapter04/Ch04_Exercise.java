@@ -2,7 +2,7 @@ package Chapter04;
 
 // Chapter04 조건문과 반복문 연습문제 풀이
 public class Ch04_Exercise {
-		
+			
 	private static void ex01() {
 		/* [4-1] 다음의 문장들을 조건식으로 표현하라. */
 		// 1. int형 변수 x가 10보다 크고 20보다 작을 때 true인 조건식
