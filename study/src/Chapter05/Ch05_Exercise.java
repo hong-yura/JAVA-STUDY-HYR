@@ -209,7 +209,7 @@ public class Ch05_Exercise {
 		// exercise.ex03();
 		// exercise.ex04();
 		// exercise.ex05();
-		exercise.ex06();
+		// exercise.ex06();
 		// exercise.ex07();
 		// exercise.ex08();
 		// exercise.ex09();
