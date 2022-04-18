@@ -251,15 +251,6 @@ public class Ch04_Exercise {
 	
 	private static void ex12() {
 		/* [4-12] 구구단의 일부분을 다음과 같이 출력하시오. */	
-//		for(int i = 2; i <= 9; i++) {
-//			for(int j = 1; j <= 3; j++) {
-//				System.out.print(i + "*" + j + "=" + i * j + "\t");
-//				System.out.println();
-//			}
-//			System.out.println();
-//		}
-		
-		
 		for (int i = 1 ; i <= 9 ; i++) {
 			for (int j = 1; j <= 3; j++) {
 				int x = j + 1 + (i - 1) / 3 * 3;
@@ -293,7 +284,7 @@ public class Ch04_Exercise {
 		// 하나씩 읽어서 검사한다.
 		for(int i = 0; i < value.length(); i++) {
 			ch = value.charAt(i);
-			if(ch >= '0' && ch <='9') {
+			if(ch >= 48 && ch <=57) {
 				isNumber = true;
 			} else {
 				isNumber = false;
