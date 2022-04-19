@@ -1,5 +1,6 @@
 package Chapter05;
 
+import java.util.Random;
 import java.util.Scanner;
 
 // Chapter05 배열 연습문제 풀이
@@ -225,9 +226,9 @@ public class Ch05_Exercise {
 		
 		for(int i = 0; i < star.length; i++) {
 			for(int j = 0; j < star[i].length; j++) {
-				i = j;
-				j = star.length-1-i;
-				result[i][j] = star[i][j];
+				int x = j;
+				int y = star.length - 1 - i;
+				result[x][y] = star[i][j];
 			}
 		}
 		
@@ -258,10 +259,15 @@ public class Ch05_Exercise {
 		// 문자열 src의 문자를 charAt()으로 하나씩 읽어서 변환 후 result에 저장
 		for(int i = 0; i < src.length(); i++) {
 			char ch = src.charAt(i);
-			/*
-				(1)알맞은 코드를 넣어 완성하시오.
-			*/
+			
+			if(ch >= 'a' && ch <= 'z') {
+				result += abcCode[ch-'a'];	// result += abcCode[]; 이렇게만 쓴 뒤로 못함..
+			} else if (ch >= '0' && ch <= '9') {
+				result += numCode[ch-'0'];
+			}
+			
 		}
+		
 		System.out.println("src:" + src);
 		System.out.println("result:" + result);		
 		
@@ -289,9 +295,18 @@ public class Ch05_Exercise {
 		
 		for(int i = 0; i < score.length; i++) {
 			for(int j = 0; j < score[i].length; j++) {
-				/*
-					(1) 알맞은 코드를 넣어 완성하시오.
-				*/
+				
+				result[i][j] = score[i][j];
+				result[i][3] += score[i][j];
+				result[5][j] += score[i][j];
+				result[5][3] += score[i][j];
+				
+				/* 또 다른 답
+				 * result[i][j] = score[i][j];
+				 * result[i][score[0].length] += result[i][j];
+				 * result[score.length][j] += result[i][j];
+				 * result[score.length][score[0].length] += result[i][j];
+				 */
 			}
 		}
 		
@@ -329,17 +344,11 @@ public class Ch05_Exercise {
 			
 			if(tmp.equals(word[i][1])) {
 				System.out.printf("정답입니다. %n%n");
+				System.out.printf("전체 %d문제 중 %d문제 맞추셨습니다. %n%n", word.length, i + 1);
 			} else {
 				System.out.printf("틀렸습니다. 정답은 %s입니다. %n%n", word[i][1]);
-			}
-			
-			
-			
-		}
-		/* 출력 결과
-		 * 
-		 */
-		
+			}	
+		}		
 	}
 	
 	
@@ -350,18 +359,25 @@ public class Ch05_Exercise {
 		String[] words = { "television", "computer", "mouse", "phone" };
 		
 		Scanner scanner = new Scanner(System.in);
+		
 		for(int i = 0; i < words.length; i++) {
 			char[] question = words[i].toCharArray(); // String을 char[]로 변환
-		
-			/*
-				(1)알맞은 코드를 넣어 완성하시오
-				 	char배열 question에 담긴 문자의 위치를 임의로 바꾼다.
-			*/
+
+			// char배열 question에 담긴 문자의 위치를 임의로 바꾼다.
+			for(int j = 0; j < question.length; j++) {
+				int k = (int)(Math.random() * question.length);	// 0 ~ question.length - 1 까지
+				char tmp = 0;
+				
+				tmp = question[j];
+				question[j] = question[k];
+				question[k] = tmp;
+			}
+
 			System.out.printf("Q%d. %s의 정답을 입력하세요.>", i + 1, new String(question));
 			
 			String answer = scanner.nextLine();
 			
-			// word[i] trim()으로 answer의 좌우 공백을 제거한 후, equals로 word[i]와 비교
+			// trim()으로 answer의 좌우 공백을 제거한 후, equals로 word[i]와 비교
 			if(words[i].equals(answer.trim())) {
 				System.out.printf("맞았습니다.%n%n"); 				
 			} else {
@@ -382,7 +398,7 @@ public class Ch05_Exercise {
 		// exercise.ex06();
 		// exercise.ex07(args);
 		// exercise.ex08();
-		 exercise.ex09();
+		// exercise.ex09();
 		// exercise.ex10();
 		// exercise.ex11();
 		// exercise.ex12();
