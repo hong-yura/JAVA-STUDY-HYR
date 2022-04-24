@@ -261,7 +261,7 @@ public class Ch05_Exercise {
 			char ch = src.charAt(i);
 			
 			if(ch >= 'a' && ch <= 'z') {
-				result += abcCode[ch-'a'];	// result += abcCode[]; 이렇게만 쓴 뒤로 못함..
+				result += abcCode[ch-'a'];
 			} else if (ch >= '0' && ch <= '9') {
 				result += numCode[ch-'0'];
 			}
@@ -335,6 +335,8 @@ public class Ch05_Exercise {
 				{"integer", "정수"}		// word[2][0], word[2][1]
 		};
 		
+		int score = 0;
+		
 		Scanner sc = new Scanner(System.in);
 		
 		for(int i = 0; i < word.length; i++) {
@@ -344,11 +346,12 @@ public class Ch05_Exercise {
 			
 			if(tmp.equals(word[i][1])) {
 				System.out.printf("정답입니다. %n%n");
-				System.out.printf("전체 %d문제 중 %d문제 맞추셨습니다. %n%n", word.length, i + 1);
+				score++;
 			} else {
 				System.out.printf("틀렸습니다. 정답은 %s입니다. %n%n", word[i][1]);
-			}	
+			}
 		}		
+		System.out.printf("전체 %d문제 중 %d문제 맞추셨습니다. %n%n", word.length, score);
 	}
 	
 	
