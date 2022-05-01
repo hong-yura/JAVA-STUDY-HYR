@@ -1,5 +1,6 @@
 package Chapter06;
 
+// Chapter06 객체지향1 연습문제 풀이
 public class Ch06_Excercise {
 	
 	/* [6-8] 다음의 코드에 정의된 변수들을 종류별로 구분해서 적으시오.
@@ -18,8 +19,9 @@ public class Ch06_Excercise {
 	 * // 정답 
 	 * 	weapon, armor - 모든 Marine인스턴스에 대해 동일한 값이어야 하므로.
 	 *  weaponUp(), armorUp() - static변수에 대한 작업을 하는 메서드이므로.
-	 *  
 	 */
 	
-	
+	/*
+	 * [6-18]
+	 */
 }
