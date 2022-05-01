@@ -1,7 +1,7 @@
 package Chapter06;
 
 // Chapter06 객체지향 프로그래밍_1 연습문제 풀이
-public class Ch06_SutdaCard {
+public class Exercise6_2 {
 	
 	public static void main(String[] args) {
 		SutdaCard card1 = new SutdaCard(3, false);
