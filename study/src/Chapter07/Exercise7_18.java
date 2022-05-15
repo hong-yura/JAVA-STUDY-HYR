@@ -3,12 +3,21 @@ package Chapter07;
 public class Exercise7_18 {
 
 	/* action 메서드를 작성하시오. */
-	Robot[] action() {
-		
+	static void action(Robot r) {
+		if(r instanceof DanceRobot) {
+			DanceRobot danceR = (DanceRobot)r;
+			danceR.dance();
+		} else if(r instanceof SingRobot) {
+			SingRobot singR = (SingRobot)r;
+			singR.sing();
+		} else if(r instanceof DrawRobot) {
+			DrawRobot drawR = (DrawRobot)r;
+			drawR.draw();
+		}
 	}
 	
 	public static void main(String[] args) {
-		Robot[] arr = { new DanceRobot(), new SingRobot(), new DrawRobot()};
+		Robot[] arr = {new DanceRobot(), new SingRobot(), new DrawRobot()};
 		
 		for(int i=0; i< arr.length;i++) {
 			action(arr[i]);			

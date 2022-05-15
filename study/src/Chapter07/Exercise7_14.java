@@ -1,14 +1,14 @@
 package Chapter07;
 
-class SutdaCard {
+class _SutdaCard {
 	private final int NUM;
 	private final boolean IS_KWANG;
 	
-	SutdaCard() {
+	_SutdaCard() {
 		this(1, true);
 	}
 	
-	SutdaCard(int num, boolean isKwang) {
+	_SutdaCard(int num, boolean isKwang) {
 		this.NUM = num;
 		this.IS_KWANG = isKwang;
 	}
@@ -18,8 +18,8 @@ class SutdaCard {
 	}
 }
 
-class Exercise7_14 {
+public class Exercise7_14 {
 	public static void main(String args[]) {
-		SutdaCard card = new SutdaCard(1, true);
+		_SutdaCard card = new _SutdaCard(1, true);
 	}
 }
