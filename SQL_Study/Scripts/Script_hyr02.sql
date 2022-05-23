@@ -64,7 +64,17 @@ SELECT EMPLOYEE_ID
 	 , DEPARTMENT_ID
 FROM EMPLOYEES;
 
+SELECT * FROM EMPLOYEES;
 /*
  * 김경욱_문제02
- * 
+ * DECODE 함수로 직급에 따라 급여를 인상해봅시다.
+ * 직급이 ‘ST_CLERK”인 사원은 200, ‘SA_MAN’인 사원은 180,
+ * ‘SA_REP’인 사원은 150, ‘IT_PROG”인 사원은 100을 인상
+ * 이름과 급여 인상된급여를 출력해주세요.
  */
+SELECT FIRST_NAME || '' || LAST_NAME 이름
+	 , SALARY 급여
+	 , DECODE(JOB_ID, 'ST_CLERK', SALARY + 200, 'SA_MAN', SALARY + 180, 'SA_REP', SALARY + 150, 'IT_PROG', SALARY + 100) 인상된급여
+  FROM EMPLOYEES;
+
+SELECT * FROM EMPLOYEES;
