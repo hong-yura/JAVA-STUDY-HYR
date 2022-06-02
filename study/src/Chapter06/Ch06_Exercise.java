@@ -1,7 +1,7 @@
 package Chapter06;
 
 // Chapter06 객체지향1 연습문제 풀이
-public class Ch06_Excercise {
+public class Ch06_Exercise {
 	
 	/* [6-8] 다음의 코드에 정의된 변수들을 종류별로 구분해서 적으시오.
 	 * - 클래스 변수(static 변수) : kind, num, width, height	// width, height

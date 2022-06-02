@@ -1,7 +1,7 @@
 package Chapter08;
 
 // Chapter08 예외처리 연습문제 풀이
-public class Ch08_Excercise {
+public class Ch08_Exercise {
 	/*
 	 * [8-1] 예외처리의 정의와 목적에 대해서 설명하시오.
 	 * 정의 : 프로그램 실행 시 발생할 수 있는 예기치 못한 예외에 대비한 코드를 작성하는 것

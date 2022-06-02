@@ -1,7 +1,7 @@
 package Chapter07;
 
 // Chapter07 객체지향2 연습문제 풀이
-public class Ch07_Excercise {
+public class Ch07_Exercise {
 	/*
 	 * [7-3] 오버라이딩의 정의와 필요성에 대해서 설명하시오.
 	 * 정의 : 오버라이딩은 자식클래스에서 상속받은 부모클래스의 메서드를 재정의 하는 것이다.  
