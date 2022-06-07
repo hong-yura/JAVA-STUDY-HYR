@@ -24,7 +24,7 @@ public class Exercise9_5 {
 				break;
 			}
 		}
-		return count;		
+		return count;
 	}
 	
 	public static void main(String[] args) {

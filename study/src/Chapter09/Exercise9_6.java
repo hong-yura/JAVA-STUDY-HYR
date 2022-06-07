@@ -28,16 +28,6 @@ public class Exercise9_6 {
 			cArr[i] = '0';
 		}
 		
-//		char[] srcArr = new char[srcArr.length];
-//		for(int j = 0; j < srcArr.length; j++) {
-//			
-//		}
-//		
-//		System.arraycopy(src, 0, cArr, length, src.length() - 1);
-//		
-//		String st = cArr;
-//		return st;
-		
 		System.arraycopy(src.toCharArray(), 0, cArr, length - src.length(), src.length());
 		// .toCharArray() - 문자열을 문자배열(char[]) 로 변환해서 반환한다.
 		// src.toCharArray()의 0번 인덱스부터 cArr의 length - src.length() 위치의 인덱스로 src.length() 만큼 복사한다.

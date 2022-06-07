@@ -13,8 +13,15 @@ public class Exercise9_3 {
 		
 		// 알맞은 코드를 넣어 완성하시오.
 		// System.out.println(fullPath.length());	// fullPath 의 길이 확인
-		path = fullPath.substring(0, 14);
-		fileName = fullPath.substring(15, 36);
+//		path = fullPath.substring(0, 14);
+//		fileName = fullPath.substring(15, 36);
+		
+		int pos = fullPath.lastIndexOf("\\");
+		
+		if(pos!=-1) {
+			path = fullPath.substring(0, pos);
+			fileName = fullPath.substring(pos+1);
+		}
 		
 		System.out.println("fullPath: " + fullPath);
 		System.out.println("path:" + path);
