@@ -42,6 +42,7 @@ CREATE TABLE subject_t (
 	 , sub_name 	VARCHAR2(10)  CONSTRAINT CK_SUBJECT_T_SUB_NAME	 CHECK(sub_name IN ('국어', '영어', '수학', '과학'))
 	 , sub_score	NUMBER(3) 	  CONSTRAINT CK_SUBJECT_T_SUB_SCORE  CHECK(sub_score BETWEEN 0 AND 100)
 	 , CONSTRAINT FK_SUBJECT_T_STU_ID FOREIGN KEY(stu_id) REFERENCES student_t(stu_id)
+-- CONSTRAINT [FK명] FOREIGN KEY([FK가 될 컬럼명]) REFERENCES [PK가 위치하는 테이블]([PK컬럼명])
 );
 
 COMMENT ON COLUMN subject_t.stu_id IS '학번'; -- 컬럼에 주석 달기
@@ -234,3 +235,29 @@ COMMENT ON COLUMN MART_T.barcode IS '바코드';
 
 SELECT * FROM USER_COL_COMMENTS WHERE TABLE_NAME = 'MART_T';	-- 주석 확인
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'MART_T'; -- 제약조건 확인
+
+-- 재은
+CREATE TABLE MART_T (
+	  name		VARCHAR2(20)
+	, price		NUMBER
+	, company	VARCHAR2(20)   DEFAULT('없음')
+	, kind 		VARCHAR2(20)
+	, possible 	CHAR(1)		   CHECK(possible IN('O', 'X'))
+	, barcode   NUMBER
+	, CONSTRAINT PK_MART_T_NAME PRIMARY KEY (name) 
+	, FOREIGN KEY(barcode) REFERENCES ref_mart_t(r_bar)
+);
+
+CREATE TABLE ref_mart_t (
+   	  r_bar	  NUMBER  		PRIMARY KEY
+   	, note    VARCHAR2(20)
+);
+
+COMMENT ON COLUMN MART_T.NAME IS '상품명';
+COMMENT ON COLUMN MART_T.PRICE IS '가격';
+COMMENT ON COLUMN MART_T.COMPANY IS '제조사';
+COMMENT ON COLUMN MART_T.KIND IS '종류';
+COMMENT ON COLUMN MART_T.POSSIBLE IS '구매가능여부';
+COMMENT ON COLUMN MART_T.BARCODE IS '바코드';
+
+
