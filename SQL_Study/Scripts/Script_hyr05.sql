@@ -73,38 +73,115 @@ ALTER TABLE subject_t MODIFY sub_name CONSTRAINT CK_SUBJECT_T_SUB_NAME CHECK(sub
 
 
 
-
-
-
-
-
 /*
  * 이보슬_문제05
  * 
+ * <STUDENT_CLUB> 테이블 (사진1-1), (사진1-2)
+ * 1. STUDENT_CLUB 테이블을 생성하시오. 
+ * 	  - CLUB_NO(동아리번호) 컬럼 -> 자료형 : NUMBER, 제약조건 : PRIMARY KEY (제약조건명은 테이블명과 컬럼명을 조합해서 지어준다.)
+ *	  - CLUB_NAME(동아리명) 컬럼 -> 자료형 : VARCHAR2(30), 제약조건 : UNIQUE (제약조건은 테이블명과 컬럼명을 조합해서 지어준다.)
+ *    - REMARK(비고) 컬럼 -> 자료형 : 한글이 100자 이하로 들어갈 수 있도록 설정
+ *  
+ * <STUDENT(학생)> 테이블 (사진2-1), (사진2-2)
+ * 1. STUDENT 테이블에 STU_AGE(나이)컬럼을 추가하시오. 
+ * 	  - 자료형은 NUMBER로 하고
+ *    - NOT NULL 제약조건을 추가해준다. (제약조건명은 테이블명과 컬럼명을 조합해서 지어준다.) 
+ *    - 컬럼을 만들어 준 뒤 DEFALUT 값을 17로 설정한다. 
+ * 2. CLUB_NO(동아리번호) 컬럼을 추가하시오.
+ * 	  - 자료형은 NUMBER로 하고
+ *    - STUDENT_CLUB 테이블의 CLUB_NO컬럼을 참조할 수 있도록 FOREIGN KEY 제약조건을 추가해준다.  (사진2-3)
+ *      (제약조건명은 테이블명과 컬럼명을 조합해서 지어준다.) 
  * 
+ * <STUDENT_LEVEL(학년)> 테이블 (사진3-1), (사진3-2)
+ * 1. STUDENT_LEVEL 테이블의 LEVEL_NO(학년)컬럼의 DEFAULT값을 1로 설정하시오.
+ * 2. STUDENT_LEVEL 테이블의 CLASS(반)컬럼명을 CLASS_NO으로 변경하시오.
  */
-SELECT * FROM 
-SELECT * FROM 
+-- STUDENT_CLUB 테이블 생성
+CREATE TABLE STUDENT_CLUB (
+	   CLUB_NO NUMBER 			CONSTRAINT PK_STUDENT_CLUB_CLUB_NO 	  PRIMARY KEY 
+	 , CLUB_NAME VARCHAR2(30)	CONSTRAINT UK_STUDENT_CLUB_CLUB_NAME  UNIQUE
+	 , REMARK VARCHAR2(100 CHAR)
+);
 
+-- STUDENT 테이블 컬럼 추가 
+ALTER TABLE STUDENT ADD STU_AGE NUMBER DEFAULT(17) CONSTRAINT NN_STUDENT_STU_AGE NOT NULL;
+ALTER TABLE STUDENT ADD CLUB_NO NUMBER CONSTRAINT FK_STUDENT_CLUB_NO REFERENCES STUDENT_CLUB(CLUB_NO);
 
+ALTER TABLE STUDENT_LEVEL MODIFY LEVEL_NO DEFAULT(1);
+ALTER TABLE STUDENT_LEVEL RENAME COLUMN CLASS TO CLASS_NO;
 
-
-
-
+SELECT * FROM STUDENT_LEVEL;
+SELECT * FROM STUDENT_CLUB;
+SELECT * FROM STUDENT;
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'STUDENT'; -- 테이블 제약조건 확인하기
 
 /*
  * 김규연_문제05
  * 
+ * 1. 테이블을 생성(bread_t)하고 각 컬럼명, 자료형, 제약조건, 제약조건명을 부여하세요.
+ * 컬럼 : 1) 재품번호(BREAD_NO, 숫자, 기본키)
+ *        2) 빵이름(BREAD_NAME, 가변길이 20자, NOT NULL)
+ * 		  3) 빵갯수(BREAD_NUM, 숫자, X -> 기본값(0))
+ * 		  4) 빵가격(BREAD_PRICE, 숫자, X -> 기본값(0))
+ * 2. 참조 태이블(bread_ref)을 생성하고 각 컬럼명, 자료형, 제약조건, 제약조건명을 부여하새요.
+ * 컬럼 : 1) 재품번호(BREAD_NO, 숫자, 기본키)
+ *        2) 비고(BREAD_TEXT, 가변길이 20자, NOT NULL)
+ * 3. 외래키를 사용하여 bread_ref 테이블에 BREAD_NO가 bread_t 테이블에 BREAD_NO을 참조할 수 있도록 하세요.
+ * 4. bread_t와 bread_ref 테이블의 컬럼에 주석을 다세요.
+ * 
+ * 5. bread_t 테이블에 빵종류(BREAD_TYPE) 컬럼을 추가하세요.
+ * 		- 자료형   : 가변길이 20자
+ * 		- 제약조건 : CHECK(식빵, 일반빵, 크림빵, 조리빵, 패스츄리빵, 도넛, 유럽건강빵 중에 확인) -> 제약조건명도 같이 추가
+ * 		- 주석     : 빵종류
+ * 
+ * 6. bread_ref 테이블에 빵생산날짜(BREAD_PRODATE) 컬럼을 추가하세요.
+ * 		- 자료형 : 날짜
+ * 		- 기본값 : 오늘날짜
+ * 		- 주석   : 빵생산날짜
+ * 
+ * 7. 비고의 컬럼명(BREAD_TEXT)을 BREAD_NOTE로 바꾸고 가변길이도 100자로 바꾸세요. 
  */ 
-SELECT * FROM 
-SELECT * FROM 
+-- 1. 
+CREATE TABLE bread_t (
+	   BREAD_NO    NUMBER 		CONSTRAINT PK_BREAD_T_BREAD_NO 	  PRIMARY KEY 
+	 , BREAD_NAME  VARCHAR2(20)	CONSTRAINT NN_BREAD_T_BREAD_NAME  NOT NULL
+	 , BREAD_NUM   NUMBER DEFAULT(0)
+	 , BREAD_PRICE NUMBER DEFAULT(0)
+);
 
+-- 2. 
+CREATE TABLE bread_ref (
+	   BREAD_NO    NUMBER 		CONSTRAINT PK_BREAD_REF_BREAD_NO    PRIMARY KEY 
+	 , BREAD_TEXT  VARCHAR2(20)	CONSTRAINT NN_BREAD_REF_BREAD_TEXT  NOT NULL
+);
 
+-- 3. 
+ALTER TABLE bread_ref MODIFY BREAD_NO CONSTRAINT FK_BREAD_REF_BREAD_NO REFERENCES bread_t(BREAD_NO);
 
+-- 4. 각 테이블의 컬럼에 주석
+COMMENT ON COLUMN bread_t.BREAD_NO IS '제품번호';
+COMMENT ON COLUMN bread_t.BREAD_NAME IS '빵이름';
+COMMENT ON COLUMN bread_t.BREAD_NUM IS '빵갯수';
+COMMENT ON COLUMN bread_t.BREAD_PRICE IS '빵가격';
 
+COMMENT ON COLUMN bread_ref.BREAD_NO IS '제품번호';
+COMMENT ON COLUMN bread_ref.BREAD_TEXT IS '비고';
 
+-- 5. bread_t 테이블에 빵종류(BREAD_TYPE) 컬럼을 추가
+ALTER TABLE bread_t ADD BREAD_TYPE VARCHAR2(20) CONSTRAINT CK_BREAD_T_BREAD_TYPE CHECK(BREAD_TYPE IN ('식빵', '일반빵', '크림빵', '조리빵', '패스츄리빵', '도넛', '유럽건강빵'));
+COMMENT ON COLUMN bread_t.BREAD_TYPE IS '빵종류';
 
+-- 6.
+ALTER TABLE bread_ref ADD BREAD_PRODATE DATE DEFAULT(SYSDATE);
+COMMENT ON COLUMN bread_ref.BREAD_PRODATE IS '빵생산날짜';
 
+-- 7. 비고의 컬럼명(BREAD_TEXT)을 BREAD_NOTE로 바꾸고 가변길이도 100자로 바꾸세요.
+ALTER TABLE bread_ref RENAME COLUMN BREAD_TEXT TO BREAD_NOTE;
+ALTER TABLE bread_ref MODIFY BREAD_NOTE VARCHAR2(100);
+
+SELECT * FROM USER_COL_COMMENTS WHERE TABLE_NAME = 'BREAD_REF';-- 테이블의 컬럼 주석 확인하기
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'BREAD_REF'; -- 테이블 제약조건 확인하기
+SELECT * FROM USER_TAB_COLUMNS WHERE TABLE_NAME = 'BREAD_REF'; -- 컬럼 확인
 
 /*
  * 김재은_문제05
@@ -115,8 +192,9 @@ SELECT * FROM
  *    (타입은 숫자형, 제약조건은 primary key로 부여하시오)
  * 3. sort의 제약조건명을 PK_MART_T_SORT 로 변경하시오.
  * 4. ref_mart_t 테이블의 r_bar의 제약조건명을 PK_REF_MART_T_R_BAR로 변경하시오.
+ * 
  * 5. EMP_MART_T 테이블을 생성하시오.
- *    ->name(가변길이 10자),  salary(숫자), manage_sort(숫자)
+ *    ->name(가변길이 10자), salary(숫자), manage_sort(숫자)
  *    (manage_sort는 MART_T의 sort를 외래키로 참조하도록 하시오.)
  * 6. 각 주석을 추가로 달아준다
  * 	 - MART_T에 SORT에는 '분류코드'
@@ -125,8 +203,29 @@ SELECT * FROM
 SELECT * FROM MART_T;
 SELECT * FROM ref_mart_t;
 
+-- 1. 컬럼 길이 늘리기
+ALTER TABLE MART_T MODIFY KIND VARCHAR2(20);
 
+-- 2. 컬럼 추가
+ALTER TABLE MART_T ADD sort NUMBER PRIMARY KEY;
 
+-- 3 4. 제약조건명 변경
+ALTER TABLE MART_T RENAME CONSTRAINT SYS_C0010856 TO PK_MART_T_SORT;
+ALTER TABLE REF_MART_T RENAME CONSTRAINT SYS_C0010067 TO PK_REF_MART_T_R_BAR;
 
+-- 5. 테이블생성
+CREATE TABLE EMP_MART_T (
+	  name 	    	VARCHAR2(10)
+	, salary    	NUMBER
+	, manage_sort	NUMBER 
+	, FOREIGN KEY(manage_sort) REFERENCES MART_T(sort)
+);
 
+-- 6. 제약조건명 변경
+ALTER TABLE EMP_MART_T RENAME CONSTRAINT SYS_C0010857 TO FK_EMP_MART_T_MANAGE_SORT;
 
+-- 7. 주석달기
+COMMENT ON COLUMN MART_T.SORT IS '분류코드';
+COMMENT ON COLUMN EMP_MART_T.NAME IS '이름';
+COMMENT ON COLUMN EMP_MART_T.SALARY IS '연봉';
+COMMENT ON COLUMN EMP_MART_T.MANAGE_SORT IS '담당분류코드';
