@@ -46,7 +46,7 @@ SELECT * FROM student_t; -- 학생 정보 테이블
 SELECT * FROM score_t; -- 과목 점수 테이블
 SELECT * FROM USER_COL_COMMENTS WHERE TABLE_NAME = 'STUDENT_T';	-- STUDENT_T 테이블 컬럼의 주석 확인하기
 SELECT * FROM USER_COL_COMMENTS WHERE TABLE_NAME = 'SCORE_T';	-- SUBJECT_T 테이블 컬럼의 주석 확인하기
-SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'STUDENT'; -- 테이블 제약조건 확인하기
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'STUDENT_T'; -- 테이블 제약조건 확인하기
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'SCORE_T'; -- 테이블 제약조건 확인하기
 
 /*
@@ -228,15 +228,23 @@ UPDATE bread_t
    SET bread_total = 15
  WHERE bread_id = 3;
 */
-INSERT INTO date_manager_t VALUES(1, '2022-06-25', '아직 생산되지 않은 빵입니다.');
-INSERT INTO date_manager_t VALUES(2, '2022-06-26', '아직 생산되지 않은 빵입니다.');
-INSERT INTO date_manager_t VALUES(3, '2022-06-24', '아직 생산되지 않은 빵입니다.');
-INSERT INTO date_manager_t VALUES(4, '2022-06-27', '아직 생산되지 않은 빵입니다.');
-INSERT INTO date_manager_t VALUES(5, '2022-06-28', '아직 생산되지 않은 빵입니다.');
-INSERT INTO date_manager_t VALUES(6, '2022-06-23', '아직 생산되지 않은 빵입니다.');
-INSERT INTO date_manager_t VALUES(7, '2022-06-29', '아직 생산되지 않은 빵입니다.');
+INSERT INTO date_manager_t VALUES(1, '2022-06-25', ' ');
+INSERT INTO date_manager_t VALUES(2, '2022-06-26', ' ');
+INSERT INTO date_manager_t VALUES(3, '2022-06-24', ' ');
+INSERT INTO date_manager_t VALUES(4, '2022-06-27', ' ');
+INSERT INTO date_manager_t VALUES(5, '2022-06-28', ' ');
+INSERT INTO date_manager_t VALUES(6, '2022-06-23', ' ');
+INSERT INTO date_manager_t VALUES(7, '2022-06-29', ' ');
 
-
+UPDATE date_manager_t
+   SET dm_note = CASE WHEN dm_proddate <= (SYSDATE - 6) THEN '이 제품은 팔 수 없습니다.'
+					  WHEN dm_proddate <= (SYSDATE - 5) THEN '유통기한이 지났습니다.'
+				   	  WHEN dm_proddate <= (SYSDATE - 4) THEN '유통기한이 1일 남았습니다.'
+				      WHEN dm_proddate <= (SYSDATE - 3) THEN '유통기한이 2일 남았습니다.'
+				      WHEN dm_proddate <= (SYSDATE - 2) THEN '유통기한이 3일 남았습니다.'
+				      WHEN dm_proddate <= (SYSDATE - 1) THEN '유통기한이 4일 남았습니다.'
+				      WHEN dm_proddate  =  SYSDATE    THEN '당일 생산 빵입니다.'
+				 								      ELSE '아직 생산되지 않은 빵입니다.' END;
 SELECT * FROM bread_t;
 SELECT * FROM date_manager_t;
 SELECT * FROM USER_COL_COMMENTS WHERE TABLE_NAME = 'DATE_MANAGER_T'; -- 컬럼의 주석 확인하기
@@ -283,4 +291,4 @@ SELECT * FROM MART_T;
 SELECT * FROM REF_MART_T;
 SELECT * FROM date_manager_t;
 SELECT * FROM USER_COL_COMMENTS WHERE TABLE_NAME = 'EMP_MART_T'; -- 컬럼의 주석 확인하기
-SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'REF_MART_T'; -- 테이블 제약조건 확인하기
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'MART_T'; -- 테이블 제약조건 확인하기
