@@ -49,24 +49,6 @@ SELECT * FROM USER_COL_COMMENTS WHERE TABLE_NAME = 'SCORE_T';	-- SUBJECT_T 테�
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'STUDENT_T'; -- 테이블 제약조건 확인하기
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'SCORE_T'; -- 테이블 제약조건 확인하기
 
-
-SELECT student_t.stu_id 
-	 , student_t.stu_name
-	 , student_t.class_name 
-	 , score_t.score_avg
-	 , student_t.stu_gpa
-  FROM student_t
-  JOIN score_t
-  ON(student_t.stu_id = score_t.stu_id)
- WHERE (student_t.stu_gpa) = (SELECT CASE WHEN score_t.score_avg <= 100 AND score_t.score_avg >= 90 THEN 'A'
-   				  	  WHEN score_t.score_avg <  90  AND score_t.score_avg >= 80 THEN 'B'
-   					  WHEN score_t.score_avg <  80  AND score_t.score_avg >= 70 THEN 'C'
-   					  WHEN score_t.score_avg <  70  AND score_t.score_avg >= 60 THEN 'D'
-   					  WHEN score_t.score_avg <  60  THEN 'F' 
-   					  ELSE '' END
-   					 FROM score_t
-   					WHERE score_t.stu_id = student_t.stu_id);
-
 /*
  * 이보슬_문제07
  * 
