@@ -33,9 +33,9 @@ SELECT student_t.stu_id
    			WHEN score_t.score_avg <  70  AND score_t.score_avg >= 60 THEN 'D'
    			WHEN score_t.score_avg <  60  THEN 'F' 
    			ELSE '' END AS stu_gpa
-   					 FROM score_t
-   					 JOIN student_t
-   					 ON(student_t.stu_id = score_t.stu_id);
+ FROM score_t
+ JOIN student_t
+   ON (student_t.stu_id = score_t.stu_id);
 
 -- 2. student_t 테이블과 score_t 테이블에 값을 추가
 INSERT INTO student_t VALUES (2206, '장인서', NULL, '여', NULL); 
